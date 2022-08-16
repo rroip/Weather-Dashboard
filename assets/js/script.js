@@ -12,6 +12,7 @@ let sCity=[];
 
 
 
+// API key 
 
 let APIKey="05eb9045cf881d6d2d0d7131aa850ae6";
 function displayWeather(event){
@@ -22,7 +23,7 @@ function displayWeather(event){
     }
 }
 
-
+// Weather report on the current city
 function currentWeather(city){
 
     let queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
@@ -41,8 +42,7 @@ function currentWeather(city){
         $(currentTemperature).html((tempF).toFixed(2)+"&#8457");
         $(currentHumidty).html(response.main.humidity+"%");
         let ws = response.wind.speed;
-        let windsmph = (ws*2.237).toFixed(1);
-        $(currentWSpeed).html(windsmph+"MPH");
+        $(currentWSpeed).html((ws)+"MPH");
         
         UVIndex(response.coord.lon,response.coord.lat);
         forecast(response.id);
@@ -150,6 +150,8 @@ function loadlastCity(){
     }
 
 }
+
+
 
 $("#search-button").on("click",displayWeather);
 $(document).on("click",invokePastSearch);
